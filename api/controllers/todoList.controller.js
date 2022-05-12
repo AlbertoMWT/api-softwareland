@@ -6,7 +6,7 @@ const Task = mongoose.model('Tasks');
 exports.listAllTasks = function (req, res) {
   Task.find({}, function (err, task) {
     if (err) res.status(400).send(err);
-    res.status(200).json({ data: { task } });
+    res.status(200).json(task);
   });
 };
 
