@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 routes(app); //register the route
 
 //Spin up server
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`todo list RESTful API server started on ${PORT}`);
 });
