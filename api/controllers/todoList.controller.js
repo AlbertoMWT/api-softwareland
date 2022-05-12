@@ -1,28 +1,30 @@
 'use strict';
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Task = mongoose.model('Tasks');
 
 exports.listAllTasks = function (req, res) {
   Task.find({}, function (err, task) {
     if (err) res.status(400).send(err);
-    res.status(200).json(task);
+    res.status(200).json({ data: { task } });
   });
 };
 
 exports.createNewTask = function (req, res) {
   const newTask = new Task(req.body);
   newTask.save(function (err, task) {
-    if (err) res.status(400).send(err);
+    if (err) console.log(res.status(400).send(err));
     res.status(200).json(task);
   });
 };
 
 exports.readTaskById = function (req, res) {
   Task.findById(req.params.taskId, function (err, task) {
-    if (err) res.status(400).json({
-      message: 'Task not found'
-    }),send(err);
+    if (err)
+      res.status(400).json({
+        message: 'Task not found'
+      }),
+        send(err);
     res.status(200).json(task);
   });
 };
