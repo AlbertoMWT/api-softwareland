@@ -1,6 +1,6 @@
 //express
 const express = require('express');
-
+const cors = require('cors');
 //Mongo
 const bodyParser = require('body-parser');
 
@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 const Task = require('./api/models/todoList.model'); //Created model loading here
 const routes = require('./api/routes/todoList.routes');
 
+
 //dotenv
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
 const app = express();
+app.use(cors());
 
 //Mongoose instance connection url connection
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.bmx50.mongodb.net/${process.env.NAME}?retryWrites=true&w=majority`;
